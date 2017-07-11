@@ -1,8 +1,8 @@
 {-# LANGUAGE OverloadedLabels, DataKinds,TypeFamilies #-}
 module PolyDictSpec(spec) where
 
-import PolyDict(Assoc,Dict)
-import qualified PolyDict as D
+import Data.PolyDict(Assoc,Dict)
+import qualified Data.PolyDict as D
 
 import Test.Hspec.Core.Spec
 import Test.Hspec.Expectations
