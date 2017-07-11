@@ -1,9 +1,9 @@
 name:                json-tracer
 version:             0.0.1.0
--- synopsis:
+synopsis:            A polymorphic, type-safe, json-structured tracing library
 description:         
     .
-    An polymorphic, type-safe, structured tracing library.
+    A polymorphic, type-safe, structured tracing library.
 
 homepage:            https://github.com/autotaker/jsontracer#readme
 license:             BSD3
@@ -18,7 +18,7 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      src
-  ghc-options:         -O2 -W
+  ghc-options:         -O -W
   exposed-modules:     Data.PolyDict
                      , Control.Monad.Trans.CTrace
                      , Control.Monad.CTrace
