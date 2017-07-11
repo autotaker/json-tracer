@@ -1,5 +1,6 @@
 {-# LANGUAGE DataKinds, TypeFamilies, OverloadedLabels #-}
-import JSON.Trace
+import Control.Monad.CTrace
+import Data.PolyDict
 import Data.Aeson.Encode.Pretty
 import qualified Data.ByteString.Lazy as B
 import Data.Time(NominalDiffTime, getCurrentTime, diffUTCTime)
@@ -36,7 +37,7 @@ doit2 = do
 main :: IO ()
 main = do
     forM_ [doit1,doit2] $ \doit -> do
-        (r, d) <- dictTraceT doit
+        (r, d) <- ioTracerT empty doit
         B.putStr (encodePretty d)
         putStrLn ""
         print r

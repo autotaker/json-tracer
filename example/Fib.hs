@@ -1,7 +1,8 @@
 {-# LANGUAGE DataKinds, TypeFamilies, OverloadedLabels #-}
 module Fib where
 import Lens.Micro
-import JSON.Trace
+import Control.Monad.CTrace
+import Data.PolyDict
 
 data Fib
 type instance Assoc Fib "arg"  = Int

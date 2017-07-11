@@ -2,7 +2,8 @@
 module Fib2 where
 import Fib(Fib)
 import Lens.Micro
-import JSON.Trace
+import Control.Monad.CTrace
+import Data.PolyDict
 import Control.Monad.State.Strict
 import qualified Data.IntMap as M
 

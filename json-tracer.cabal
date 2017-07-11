@@ -1,5 +1,5 @@
 name:                json-tracer
-version:             0.0.1.1
+version:             0.0.1.2
 synopsis:            A polymorphic, type-safe, json-structured tracing library
 description:         
     .
@@ -22,7 +22,6 @@ library
   exposed-modules:     Data.PolyDict
                      , Control.Monad.Trans.CTrace
                      , Control.Monad.CTrace
-                     , JSON.Trace
   build-depends:       base >= 4.7 && <5,
                        mtl >=2.2 && <2.3, 
                        unordered-containers >= 0.2.8,
