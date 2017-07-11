@@ -2,14 +2,14 @@
 Type-safe polymorphic json-structured tracing library
 
 This library provides two modules
-- Data.PolyDict: type-safe, polymorphic, and json-structured dictionary
-- Control.Monad.CTrace: a monad that enables contextual tracing
+- `Data.PolyDict`: type-safe, polymorphic, and json-structured dictionary
+- `Control.Monad.CTrace`: a monad that enables contextual tracing
 
 # PolyDict
 PolyDict is a hash dict like JSON, but it is typed.
 `Dict n` is a dictinary whose fields are typed accoding to `Assoc n`. 
 That is, each field has type `Key k` (which is a proxy of type-level symbol `k`) and 
-the type of values can be associated with the key is `Assoc n k`. 
+`Assoc n k` is the type of values associated with the key. 
 
 Basically, users define a `data` that represents the namespace of the `Dict`.
 For example:
@@ -28,7 +28,8 @@ The RHS type of the `Assoc n k` must satisfy the `DictValue v` constraint.
 type family DictValue v :: Constraint where
     DictValue v = (Eq v, Show v, ToJSON v)
 ```
-As far as the author knows, any (ToJSON v) value satisfy this constraint.
+As far as the author knows, any `ToJSON v` value satisfy this constraint.
+
 Note: `Dict n` is allowed as the RHS type as `Dict n` satisfies the `DictValue` constraint. Hence recursive structures can be handled.
 
 Since the definition of type family is open, users don't have to define all rules at the same module.
@@ -44,9 +45,9 @@ Values in `Dict` are obtained and updated by `lookup` and `insert` function.
 lookup :: (KnownSymbol k, DictValue v, Assoc n k ~ v) => Key k -> Dict n -> Maybe v
 insert :: (KnownSymbol k, DictValue v, Assoc n k ~ v) => Key k -> v -> Dict n -> Dict n
 ```
-With `OverloadedLabels` extention, user can write `#foo` as the key for the field "foo".
+With the `OverloadedLabels` extention, user can write `#foo` as the key for the field `"foo"`.
 
-##Examples
+## Examples
 ```haskell
 ghci> let v = insert #tag "sample" empty 
 ghci> v
@@ -57,13 +58,13 @@ ghci> lookup #elapsed_time v
 Nothing
 ```
 
-Instead, users can use lenses to access thouse fields by using `access` function, or by using `access'` function with the default value.
+Instead, lenses can be used to access thouse fields with `access` function.
 ```haskell
 access  :: forall n k v. (KnownSymbol k, DictValue v, Assoc n k ~ v) => Key k -> Lens' (Dict n) (Maybe v)
 access' :: forall n k v. (KnownSymbol k, DictValue v, Assoc n k ~ v) => Key k -> v -> Lens' (Dict n) v
 ```
 
-##Examples
+## Examples
 ```haskell
 ghci> let v = empty & access #tag ?~ "sample"
 ghci> v
@@ -91,7 +92,7 @@ This is intentional, to make it easy to disable tracing.
 zoom :: ASetter' c c' -> TracerT c' m a -> TracerT c m a
 ```
 
-# Combined Example
+# Complete Example
 ```haskell
 {-# LANGUAGE TypeFamilies, DataKinds, OverloadedLabels #-}
 import Data.PolyDict
