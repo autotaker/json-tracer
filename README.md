@@ -1,7 +1,7 @@
 # json-tracer
 Type-safe polymorphic json-structured tracing library
 
-[https://hackage.haskell.org/package/json-tracer]
+[hackage](https://hackage.haskell.org/package/json-tracer)
 
 This library provides two modules
 - `Data.PolyDict`: type-safe, polymorphic, and json-structured dictionary
