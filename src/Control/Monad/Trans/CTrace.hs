@@ -29,9 +29,9 @@ update :: MonadIO m => (c -> c) -> TracerT c m ()
 update f = TracerT $ ReaderT $ \tracer -> liftIO (tracer f)
 {-# INLINE update #-}
 
--- | transform the base monad
+-- | Transform the base monad
 mapTracerT :: (m a -> n b) -> TracerT c m a -> TracerT c n b
-mapTracerT f (TracerT v) = TracerT $ ReaderT $ \action -> f (runReaderT v action)
+mapTracerT f (TracerT v) = TracerT $ mapReaderT f v
 {-# INLINE mapTracerT #-}
 
 -- | Change the tracing context. 
