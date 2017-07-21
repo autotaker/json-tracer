@@ -2,6 +2,7 @@
 module Fib2 where
 import Fib(Fib)
 import Lens.Micro
+import Control.Monad.IO.Class
 import Control.Monad.CTrace
 import Data.PolyDict
 import Control.Monad.State.Strict
@@ -24,7 +25,7 @@ memoFib n = do
             update $ access' #calls [] %~ ((n,v):)
             return v
 
-fib :: Monad m => Int -> TracerT (Dict Fib) m Int
+fib :: MonadIO m => Int -> TracerT (Dict Fib) m Int
 fib n = do
     update (access #arg ?~ n)
     r <- evalStateT (memoFib n) (M.empty)

@@ -11,6 +11,7 @@
 module Control.Monad.CTrace( MonadTrace(..)
                            , TracerT
                            , zoom
+                           , mapTracerT
                            , runTracerT
                            , noTracerT
                            , ioTracerT) where
@@ -25,6 +26,7 @@ import Control.Monad.Trans.List
 import Control.Monad.Trans.Maybe
 import Control.Monad.Trans.Identity
 import Control.Monad.Trans.Cont
+import Control.Monad.IO.Class
 import qualified Control.Monad.Trans.State.Strict as Strict
 import qualified Control.Monad.Trans.State.Lazy as Lazy
 import qualified Control.Monad.Trans.Writer.Strict as Strict
@@ -40,7 +42,7 @@ class Monad m => MonadTrace c m | m -> c where
     -- | monomorphic version of 'zoom' operation
     zoom'  :: ASetter' c c -> m a -> m a
 
-instance Monad m => MonadTrace c (TracerT c m) where
+instance MonadIO m => MonadTrace c (TracerT c m) where
     update = T.update 
     zoom' = zoom
 

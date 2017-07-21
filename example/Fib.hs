@@ -3,6 +3,7 @@ module Fib where
 import Lens.Micro
 import Control.Monad.CTrace
 import Data.PolyDict
+import Control.Monad.IO.Class
 
 data Fib
 type instance Assoc Fib "arg"  = Int
@@ -10,7 +11,7 @@ type instance Assoc Fib "ret"  = Int
 type instance Assoc Fib "left"  = Dict Fib
 type instance Assoc Fib "right" = Dict Fib
 
-fib :: Monad m => Int -> TracerT (Dict Fib) m Int
+fib :: MonadIO m => Int -> TracerT (Dict Fib) m Int
 fib n = do
     update (access #arg ?~ n)
     r <- case n of
