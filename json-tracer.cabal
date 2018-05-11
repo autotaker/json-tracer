@@ -1,9 +1,8 @@
 name:                json-tracer
-version:             0.0.2.0
+version:             0.0.3.0
 synopsis:            A polymorphic, type-safe, json-structured tracing library
 description:         
-    .
-    A polymorphic, type-safe, structured tracing library.
+    This library provides a way of structured tracing, which are useful for logging call graphs.
 
 homepage:            https://github.com/autotaker/json-tracer#readme
 license:             BSD3
@@ -13,7 +12,7 @@ maintainer:          autotaker@gmail.com
 copyright:           2017 Taku Terao
 category:            Control
 build-type:          Simple
-extra-source-files:  README.md
+extra-source-files:  README.md CHANGELOG.md
 cabal-version:       >=1.10
 
 library
@@ -22,7 +21,7 @@ library
   exposed-modules:     Data.PolyDict
                      , Control.Monad.Trans.CTrace
                      , Control.Monad.CTrace
-  build-depends:       base >= 4.7 && <5,
+  build-depends:       base >= 4.10 && <5,
                        mtl >=2.2 && <2.3, 
                        unordered-containers >= 0.2.8,
                        hashable >= 1.2.7 &&  < 1.2.8,
