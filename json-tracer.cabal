@@ -25,7 +25,7 @@ library
   build-depends:       base >= 4.7 && <5,
                        mtl >=2.2 && <2.3, 
                        unordered-containers >= 0.2.8,
-                       hashable >= 1.2.6 &&  < 1.2.7,
+                       hashable >= 1.2.7 &&  < 1.2.8,
                        ghc-prim >= 0.5 && < 0.6,
                        microlens > 0.4.0,
                        microlens-ghc > 0.4.0,

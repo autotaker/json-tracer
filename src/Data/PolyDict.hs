@@ -92,7 +92,7 @@ data Entry n where
 newtype Key (k :: Symbol) = Key (Proxy k)
 
 instance k ~ k' => IsLabel k (Key k') where
-    fromLabel _ = Key Proxy
+    fromLabel = Key Proxy
     {-# INLINE fromLabel #-}
 
 -- | Return the value associated with the key.
